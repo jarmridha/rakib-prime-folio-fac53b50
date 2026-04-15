@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import profileImg from "@/assets/profile-placeholder.jpg";
+import engineerIllustration from "@/assets/engineer-illustration.png";
 
 const roles = ["Civil Engineer", "Quality Control Engineer", "Project Engineer"];
 
