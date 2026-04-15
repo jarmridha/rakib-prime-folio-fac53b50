@@ -22,8 +22,8 @@ const ContactSection = () => {
             <h3 className="font-display text-lg font-semibold text-foreground">Contact Information</h3>
             <div className="space-y-4 text-sm font-body">
               {[
-                { icon: Mail, label: "your.email@example.com", href: "mailto:your.email@example.com" },
-                { icon: Phone, label: "+880 XXXX-XXXXXX", href: "tel:+880" },
+                { icon: Mail, label: "jarakibmridha@gmail.com", href: "mailto:jarakibmridha@gmail.com" },
+                { icon: Phone, label: "+880 1676080995, +8801735027724", href: "tel:+8801676080995" },
                 { icon: Link2, label: "linkedin.com/in/jahangiralamrakib", href: "https://linkedin.com/in/jahangiralamrakib" },
                 { icon: MapPin, label: "Bangladesh" },
               ].map(({ icon: Icon, label, href }) => (
