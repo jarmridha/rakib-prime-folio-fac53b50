@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Mail } from "lucide-react";
 import profileImg from "@/assets/profile-placeholder.jpg";
-import engineerIllustration from "@/assets/engineer-illustration.png";
 
 const roles = ["Civil Engineer", "Quality Control Engineer", "Project Engineer"];
 
@@ -31,13 +30,10 @@ const HeroSection = () => {
           <p className="text-primary font-body text-sm tracking-widest uppercase mb-3">
             Welcome to my portfolio
           </p>
-          <div className="flex items-center gap-4">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
-              Jahangir Alam{" "}
-              <span className="gold-gradient-text">Rakib</span>
-            </h1>
-            <img src={engineerIllustration} alt="Engineer illustration" className="h-16 sm:h-20 w-auto opacity-70 invert" />
-          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
+            Jahangir Alam{" "}
+            <span className="gold-gradient-text">Rakib</span>
+          </h1>
 
           <div className="h-8 mt-3 overflow-hidden">
             <motion.p
@@ -92,17 +88,14 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="flex justify-center lg:justify-end"
         >
-          <div className="relative flex flex-col items-center gap-6">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_hsl(42_78%_60%/0.12)]">
-              <img
-                src={profileImg}
-                alt="Jahangir Alam Rakib"
-                width={512}
-                height={512}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <img src={engineerIllustration} alt="Engineer illustration" className="w-40 sm:w-48 opacity-50 invert" />
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_hsl(42_78%_60%/0.12)]">
+            <img
+              src={profileImg}
+              alt="Jahangir Alam Rakib"
+              width={512}
+              height={512}
+              className="w-full h-full object-cover"
+            />
           </div>
         </motion.div>
       </div>
