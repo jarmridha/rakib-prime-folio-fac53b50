@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import { Mail, Phone, MapPin, Linkedin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, LinkedinIcon, Send } from "lucide-react";
 import { useState } from "react";
 
 const ContactSection = () => {
