@@ -31,10 +31,13 @@ const HeroSection = () => {
           <p className="text-primary font-body text-sm tracking-widest uppercase mb-3">
             Welcome to my portfolio
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
-            Jahangir Alam{" "}
-            <span className="gold-gradient-text">Rakib</span>
-          </h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold leading-tight">
+              Jahangir Alam{" "}
+              <span className="gold-gradient-text">Rakib</span>
+            </h1>
+            <img src={engineerIllustration} alt="Engineer illustration" className="h-16 sm:h-20 w-auto opacity-70 invert" />
+          </div>
 
           <div className="h-8 mt-3 overflow-hidden">
             <motion.p
