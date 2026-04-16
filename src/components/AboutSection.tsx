@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { CheckCircle } from "lucide-react";
+import aboutIllustration from "@/assets/about-illustration.png";
 
 const strengths = [
   "Quality Control & Assurance",
