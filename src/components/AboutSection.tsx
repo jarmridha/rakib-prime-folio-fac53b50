@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { CheckCircle } from "lucide-react";
-import aboutIllustration from "@/assets/about-illustration.png";
 
 const strengths = [
   "Quality Control & Assurance",
@@ -17,19 +16,6 @@ const strengths = [
 const AboutSection = () => (
   <section id="about" className="section-padding">
     <div className="max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex justify-center mb-8"
-      >
-        <img
-          src={aboutIllustration}
-          alt="Engineer illustration"
-          className="h-32 md:h-40 object-contain opacity-70 invert brightness-90"
-        />
-      </motion.div>
       <SectionHeading title="About Me" subtitle="Professional profile & core strengths" />
 
       <div className="grid lg:grid-cols-3 gap-8">
