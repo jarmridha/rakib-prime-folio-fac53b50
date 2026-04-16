@@ -27,7 +27,7 @@ const AboutSection = () => (
         <img
           src={aboutIllustration}
           alt="Engineer illustration"
-          className="h-32 md:h-40 object-contain opacity-80"
+          className="h-32 md:h-40 object-contain opacity-70 invert brightness-90"
         />
       </motion.div>
       <SectionHeading title="About Me" subtitle="Professional profile & core strengths" />
