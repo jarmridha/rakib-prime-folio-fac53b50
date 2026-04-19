@@ -64,9 +64,9 @@ const CertificationsSection = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
-                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-50 pointer-events-none"
+                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-50 pointer-events-none w-[280px] max-w-[calc(100vw-2rem)]"
                   >
-                    <div className="glass-card rounded-xl overflow-hidden shadow-[0_8px_40px_hsl(var(--gold-glow)/0.15)] border border-primary/20 w-[280px]">
+                    <div className="glass-card rounded-xl overflow-hidden shadow-[0_8px_40px_hsl(var(--gold-glow)/0.15)] border border-primary/20">
                       <img
                         src={c.image}
                         alt={c.title}
