@@ -40,7 +40,26 @@ const CertificationsSection = () => {
         <SectionHeading title="Certifications & Trainings" subtitle="Professional development & industry credentials" />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certs.map((c, i) => (
+          {certs.map((c, i) => {
+            // Determine column to align preview and avoid viewport clipping
+            const colMod3 = i % 3;
+            const colMod2 = i % 2;
+            // On lg (3 cols): rightmost = right-aligned, leftmost = left-aligned, middle = centered
+            // On sm (2 cols): right col = right-aligned, left col = left-aligned
+            const previewAlign =
+              "left-1/2 -translate-x-1/2 " + // default sm:base centered fallback (overridden below)
+              // sm breakpoint: 2 columns
+              (colMod2 === 0
+                ? "sm:left-0 sm:translate-x-0 "
+                : "sm:left-auto sm:right-0 sm:translate-x-0 ") +
+              // lg breakpoint: 3 columns
+              (colMod3 === 0
+                ? "lg:left-0 lg:right-auto lg:translate-x-0"
+                : colMod3 === 2
+                ? "lg:left-auto lg:right-0 lg:translate-x-0"
+                : "lg:left-1/2 lg:right-auto lg:-translate-x-1/2");
+
+            return (
             <motion.div
               key={c.title}
               ref={(el) => { cardRefs.current[i] = el; }}
