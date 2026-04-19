@@ -6,6 +6,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import certPlaceholder from "@/assets/cert-placeholder.jpg";
 import certPmpUnit3 from "@/assets/cert-pmp-unit-3.jpg";
 import certHighImpactWriting from "@/assets/cert-high-impact-writing.jpg";
+import certInitiatingPlanning from "@/assets/cert-initiating-planning.jpg";
 
 const certs = [
   { title: "PMP Certification: Unit 3", image: certPmpUnit3, pdf: "/certificates/pmp-unit-3.pdf" },
@@ -18,7 +19,7 @@ const certs = [
   { title: "Basic Safety Training", image: certPlaceholder },
   { title: "Health & Safety Induction Certificate", image: certPlaceholder },
   { title: "Managing Project Risks and Changes", image: certPlaceholder },
-  { title: "Initiating and Planning Projects", image: certPlaceholder },
+  { title: "Initiating and Planning Projects", image: certInitiatingPlanning, pdf: "/certificates/initiating-and-planning-projects.pdf" },
   { title: "High-Impact Business Writing", image: certHighImpactWriting, pdf: "/certificates/high-impact-business-writing.pdf" },
 ];
 
