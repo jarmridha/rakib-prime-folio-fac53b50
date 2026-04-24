@@ -6,6 +6,26 @@ import { useState } from "react";
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+
+    if (!name || !email || !message) {
+      window.alert("Please fill in your name, email, and message.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:jarakibmridha@gmail.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section id="contact" className="section-padding bg-surface/50">
       <div className="max-w-5xl mx-auto">
@@ -47,7 +67,7 @@ const ContactSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
             className="glass-card rounded-xl p-6 space-y-4"
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
           >
             <input
               type="text"
@@ -76,6 +96,9 @@ const ContactSection = () => {
             >
               <Send size={14} /> Send Message
             </button>
+            <p className="text-xs text-muted-foreground font-body">
+              Clicking send will open your email app with the message pre-filled to jarakibmridha@gmail.com.
+            </p>
           </motion.form>
         </div>
       </div>
