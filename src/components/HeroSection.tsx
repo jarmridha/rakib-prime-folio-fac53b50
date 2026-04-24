@@ -84,15 +84,31 @@ const HeroSection = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="flex justify-center lg:justify-end"
         >
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_hsl(42_78%_60%/0.12)]">
-            <img
-              src={profileImg}
-              alt="Jahangir Alam Rakib"
-              width={512}
-              height={512}
-              className="w-full h-full object-cover object-top"
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative"
+          >
+            <motion.div
+              aria-hidden
+              animate={{ opacity: [0.35, 0.6, 0.35], scale: [1, 1.05, 1] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0 -z-10 rounded-full bg-primary/20 blur-3xl"
             />
-          </div>
+            <motion.div
+              whileHover={{ scale: 1.03, rotate: 1 }}
+              transition={{ type: "spring", stiffness: 200, damping: 15 }}
+              className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-2 border-primary/30 shadow-[0_0_60px_hsl(42_78%_60%/0.12)]"
+            >
+              <img
+                src={profileImg}
+                alt="Jahangir Alam Rakib"
+                width={512}
+                height={512}
+                className="w-full h-full object-cover object-top"
+              />
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
