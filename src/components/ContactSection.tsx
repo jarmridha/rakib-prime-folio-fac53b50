@@ -3,10 +3,14 @@ import SectionHeading from "./SectionHeading";
 import { Mail, Phone, MapPin, Link2, Send } from "lucide-react";
 import { useState } from "react";
 
+const WEB3FORMS_KEY = "21b0bd26-b33f-4e84-99da-09cda85add30";
+
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const name = form.name.trim();
@@ -14,16 +18,45 @@ const ContactSection = () => {
     const message = form.message.trim();
 
     if (!name || !email || !message) {
-      window.alert("Please fill in your name, email, and message.");
+      setStatus({ type: "error", text: "Please fill in your name, email, and message." });
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+    try {
+      setIsSubmitting(true);
+      setStatus(null);
 
-    window.location.href = `mailto:jarakibmridha@gmail.com?subject=${subject}&body=${body}`;
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Portfolio Contact from ${name}`,
+          from_name: "Jahangir Alam Rakib Portfolio",
+          name,
+          email,
+          message,
+          replyto: email,
+          to: "jarakibmridha@gmail.com",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setStatus({ type: "success", text: "Message sent successfully. It will arrive in my email inbox." });
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        setStatus({ type: "error", text: result.message || "Message sending failed. Please try again." });
+      }
+    } catch {
+      setStatus({ type: "error", text: "Something went wrong while sending your message. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -92,13 +125,16 @@ const ContactSection = () => {
             />
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-body text-sm font-medium hover:opacity-90 transition"
+              disabled={isSubmitting}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-body text-sm font-medium hover:opacity-90 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              <Send size={14} /> Send Message
+              <Send size={14} /> {isSubmitting ? "Sending..." : "Send Message"}
             </button>
-            <p className="text-xs text-muted-foreground font-body">
-              Clicking send will open your email app with the message pre-filled to jarakibmridha@gmail.com.
-            </p>
+            {status && (
+              <p className={`text-xs font-body ${status.type === "success" ? "text-green-400" : "text-red-400"}`}>
+                {status.text}
+              </p>
+            )}
           </motion.form>
         </div>
       </div>
