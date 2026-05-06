@@ -3,103 +3,16 @@ import SectionHeading from "./SectionHeading";
 import mrtImg from "@/assets/project-mrt.jpg";
 import doorImg from "@/assets/project-door.jpg";
 
-type Project = {
-  title: string;
-  image: string;
-  role: string;
-  description: string;
-  tags: string[];
-  gallery?: string[];
-};
+const hsiaMain = `data:image/jpeg;base64,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`;
+const hsiaThumbOne = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACQZGyAbFyQgHiApJyQrNls7NjIyNm9PVEJbhHSKiIF0f32Ro9GxkZrFnX1/tve4xdje6uzqja////7j/9Hl6uH/2wBDAScpKTYwNms7O2vhln+W4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eH/wAARCAAuAFoDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAEDAgT/xAAsEAABBAADBwQBBQAAAAAAAAABAAIDERIhMQQyQVFhcZETIkKBFFJiscHh/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAwDAQACEQMRAD8AghJCAQhCAQgAuNNBPZU/Hlq8BHdBNCoIJCLr6Kw5rm7zSECQkhA0JIQNoLjTRZVBCfk5rfu1ACw33gF3TRUw6NxYtcxxyQUwwt3nknwn6kTTTWAH9wtQMBMTcxYvUrUsEglcQL+xyQqj9qe04a7gZIa/E0vByGt8FmeGX1TTCRloOicUUg2faLY68IrLqkKwNso0GmuZKsdpDaD+PABcnoy1lG/wqbRDI6UlrTVD+EiV0F0L95oBP0VkwMO4+u+awYz65cSMPccllsdBuYyu8/CKb4nMOoPUFZwnp5CRaADiAvus+z9I8/4gwDRCLztJCB2eaZe4k56rKEFXTOLy4myR/S0ydzY3tHyrioFAORQVfNiIJxWABvLJkzPtGfPNTQg3jdeoHYJYnHVx8pJWgaSRQg//2Q==`;
+const hsiaThumbTwo = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACQZGyAbFyQgHiApJyQrNls7NjIyNm9PVEJbhHSKiIF0f32Ro9GxkZrFnX1/tve4xdje6uzqja////7j/9Hl6uH/2wBDAScpKTYwNms7O2vhln+W4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eH/wAARCAAyAFoDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAwQAAQIF/8QALxAAAgECBAQEBAcAAAAAAAAAAQIAAxEEEiExIjJBUWFxgbEFE5HRI0JDUmKCkv/EABcBAQEBAQAAAAAAAAAAAAAAAAEAAgP/xAAZEQEBAQEBAQAAAAAAAAAAAAAAARESIVH/2gAMAwEAAhEDEQA/AOpKImrS7RALLBERkiYKRjNgGSZKeEZyQVWqlJlU2JPS+sdZ5C+WZRpwrVqYAN99PKXYMLg6R0clykopGMkwyy1YXKzNjGMsrJLRjoiXM5gN4rW+IUqei8beH3mHY2YtWxdGjoWu3ZdTOdWxlarcXyr2EUNTLuIac+m6+PrVLhPw18N/rFG7k6ylrrcXQ+kPVQLTD9CLwOxhMQ6aHjXsY1Rrr+m2U/tbrOaavZZAxMfYPK71OsrHK3A3YwpWcJMQ6CxIZezRzD44CwDf1c+xjrOHykrJKSstTQGzdjvNXiscitiqtXma47DaC1ZMwVh01G8GvML6C8eeqjBbMLBh1hi0Klh62a7OAO282mHps7s4Js1gL6Qq1A1rEHyMpTzaHmPvHBtwVAlPkRV8hB4zWiG8ZYvblP0l1KbVKAUKSb9OkhCBCncAzIQcQGmkO+GqqRwn1g8jpfMNxGqaCaRB3uLzLBgdRYQtnJ2Mo0muTY2g1LVU8Q6AAG69jGB8Qe35/qPtFflMLXU6eE1lH8v8yWph9a6A6i4nWyqNgB6SSQqgo2EULNc8R37ySQaVW5j5n3hcPyoPEySQhreJA4BbpFmAtsJJJqMUByddZkE5DqeUmSSIYJNtzsPaDBNt5JJJ/9k=`;
+const hsiaThumbThree = `data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDACQZGyAbFyQgHiApJyQrNls7NjIyNm9PVEJbhHSKiIF0f32Ro9GxkZrFnX1/tve4xdje6uzqja////7j/9Hl6uH/2wBDAScpKTYwNms7O2vhln+W4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eH/wAARCAAyAFoDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAAEDBAIF/8QAKhAAAgEDAQgBBQEBAAAAAAAAAQIAAxESMQQTISIyQVFhFEJxgZGhUmL/xAAXAQEBAQEAAAAAAAAAAAAAAAABAAID/8QAGhEBAQEBAQEBAAAAAAAAAAAAAAEREkExAv/aAAwDAQACEQMRAD8AhjDCXxEe7nZyZ8IYzRhDCKZsYsZp3dzYCd/GbVyqD/owtkWWseMWM2NToqp5mZvOgElh4h1DzWfGIrLlJyViyiVnNpYrFjIvUbZ8tDb7R7oqPMqFpotmYW9kRb+ggtmD9uM5duvLjdeot3b6QT7MDttO9lVj+JNtuPal41MehkNhXA5bKPC8JkesKfWeb7S/yqrMBZFuwEjW41GDW4cJnNq3IErI9J3xPLqJAbS4YEoAJo2dR8WqbaW7e5GoocqBf9WlkXVV3iqoLsAG0EdgwuNPci6BwmIPBLG6mdrSD1ad2KgAdQlNnxbv2GV7zjGdhXV8d5kS2vqdXF/pmp+qOYkahYgk3PmPeH1+pnzhnDC0isQb8P1Od6R2Xt2kMoZSxNiVi1ZRYdQ7RV9oZarC5ABPAGwMhRa1QGKubuTM+teNVGoTslYhm7atx/EztXvTIJYm/do6TWoOvmZiZBrO0HBLgHlt/Zz8hiUvbp8TOTwEV5YdXfaH5bHQ3/klvan+5wTFeakGnCEJAQhCSUp9UKusITPrXhp0GSMISipGEIRBGKEIh//Z`;
 
+type Project = { title: string; image: string; role: string; description: string; tags: string[]; gallery?: string[]; };
 const projects: Project[] = [
-  {
-    title: "HSIA Terminal 03",
-    image: "/hsia/hsia-main.jpg",
-    gallery: [
-      "/hsia/hsia-thumb-1.jpg",
-      "/hsia/hsia-thumb-2.jpg",
-      "/hsia/hsia-thumb-3.jpg",
-    ],
-    role: "Quality Control Engineer",
-    description:
-      "Managed end-to-end QA/QC processes for one of Bangladesh's most significant aviation infrastructure projects, ensuring compliance with international standards.",
-    tags: ["QA/QC", "Documentation", "Inspection", "Aviation"],
-  },
-  {
-    title: "Dhaka MRT Project",
-    image: mrtImg,
-    role: "QC Engineer",
-    description:
-      "Executed quality inspections and layout demarcation for the country's first mass rapid transit system, coordinating with Japanese and local engineering teams.",
-    tags: ["Quality Control", "Structural", "Transit", "Surveying"],
-  },
-  {
-    title: "Dormakaba ES 250 Pro Easy",
-    image: doorImg,
-    role: "Project Engineer – Installation",
-    description:
-      "Overseeing installation of automatic sliding door systems, managing vendor coordination, site execution, and commissioning for commercial projects.",
-    tags: ["Installation", "Automation", "Project Execution"],
-  },
+  { title: "HSIA Terminal 03", image: hsiaMain, gallery: [hsiaThumbOne, hsiaThumbTwo, hsiaThumbThree], role: "Quality Control Engineer", description: "Managed end-to-end QA/QC processes for one of Bangladesh's most significant aviation infrastructure projects, ensuring compliance with international standards.", tags: ["QA/QC", "Documentation", "Inspection", "Aviation"] },
+  { title: "Dhaka MRT Project", image: mrtImg, role: "QC Engineer", description: "Executed quality inspections and layout demarcation for the country's first mass rapid transit system, coordinating with Japanese and local engineering teams.", tags: ["Quality Control", "Structural", "Transit", "Surveying"] },
+  { title: "Dormakaba ES 250 Pro Easy", image: doorImg, role: "Project Engineer – Installation", description: "Overseeing installation of automatic sliding door systems, managing vendor coordination, site execution, and commissioning for commercial projects.", tags: ["Installation", "Automation", "Project Execution"] },
 ];
-
-const ProjectsSectionLite = () => (
-  <section id="projects" className="section-padding">
-    <div className="max-w-7xl mx-auto">
-      <SectionHeading
-        title="Featured Projects"
-        subtitle="Key infrastructure and engineering projects"
-      />
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((p, i) => (
-          <motion.div
-            key={p.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="glass-card-hover rounded-xl overflow-hidden group"
-          >
-            <div className="h-48 overflow-hidden bg-card/40">
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                width={800}
-                height={512}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <div className="p-5">
-              <h3 className="font-display text-lg font-semibold text-foreground">{p.title}</h3>
-              <p className="text-primary text-xs font-body mt-1">{p.role}</p>
-              <p className="text-sm text-muted-foreground font-body mt-2 leading-relaxed">
-                {p.description}
-              </p>
-              {p.gallery && (
-                <div className="grid grid-cols-3 gap-2 mt-4">
-                  {p.gallery.map((img, idx) => (
-                    <div key={idx} className="h-16 rounded-lg overflow-hidden border border-white/10 bg-card/40">
-                      <img src={img} alt={`${p.title} ${idx + 1}`} loading="lazy" className="w-full h-full object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="flex flex-wrap gap-1.5 mt-3">
-                {p.tags.map((t) => (
-                  <span key={t} className="text-[10px] font-body px-2 py-0.5 rounded-full bg-muted text-muted-foreground">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
+const ProjectsSectionLite = () => (<section id="projects" className="section-padding"><div className="max-w-7xl mx-auto"><SectionHeading title="Featured Projects" subtitle="Key infrastructure and engineering projects" /><div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">{projects.map((p, i) => (<motion.div key={p.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.1 }} className="glass-card-hover rounded-xl overflow-hidden group"><div className="h-48 overflow-hidden bg-card/40"><img src={p.image} alt={p.title} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div><div className="p-5"><h3 className="font-display text-lg font-semibold text-foreground">{p.title}</h3><p className="text-primary text-xs font-body mt-1">{p.role}</p><p className="text-sm text-muted-foreground font-body mt-2 leading-relaxed">{p.description}</p>{p.gallery && (<div className="grid grid-cols-3 gap-2 mt-4">{p.gallery.map((img, idx) => (<div key={idx} className="h-16 rounded-lg overflow-hidden border border-white/10 bg-card/40"><img src={img} alt={`${p.title} ${idx + 1}`} loading="lazy" className="w-full h-full object-cover" /></div>))}</div>)}<div className="flex flex-wrap gap-1.5 mt-3">{p.tags.map((t) => (<span key={t} className="text-[10px] font-body px-2 py-0.5 rounded-full bg-muted text-muted-foreground">{t}</span>))}</div></div></motion.div>))}</div></div></section>);
 export default ProjectsSectionLite;
