@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import hsiaImg from "@/assets/project-hsia.jpg";
 import mrtImg from "@/assets/project-mrt.jpg";
 import doorImg from "@/assets/project-door.jpg";
 
@@ -16,8 +15,12 @@ type Project = {
 const projects: Project[] = [
   {
     title: "HSIA Terminal 03",
-    image: hsiaImg,
-    gallery: [hsiaImg, hsiaImg, hsiaImg],
+    image: "/hsia/hsia-main.jpg",
+    gallery: [
+      "/hsia/hsia-thumb-1.jpg",
+      "/hsia/hsia-thumb-2.jpg",
+      "/hsia/hsia-thumb-3.jpg",
+    ],
     role: "Quality Control Engineer",
     description:
       "Managed end-to-end QA/QC processes for one of Bangladesh's most significant aviation infrastructure projects, ensuring compliance with international standards.",
