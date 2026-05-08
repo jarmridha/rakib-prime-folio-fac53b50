@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import mrtImg from "@/assets/project-mrt.jpg";
 import doorImg from "@/assets/project-door.jpg";
 
 type Project = {
@@ -28,7 +27,12 @@ const projects: Project[] = [
   },
   {
     title: "Dhaka MRT Project",
-    image: mrtImg,
+    image: "/mrt/mrt-main.jpg",
+    gallery: [
+      "/mrt/mrt-thumb-1.jpg",
+      "/mrt/mrt-thumb-2.jpg",
+      "/mrt/mrt-thumb-3.jpg",
+    ],
     role: "QC Engineer",
     description:
       "Executed quality inspections and layout demarcation for the country's first mass rapid transit system, coordinating with Japanese and local engineering teams.",
