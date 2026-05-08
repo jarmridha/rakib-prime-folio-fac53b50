@@ -3,13 +3,9 @@ import SectionHeading from "./SectionHeading";
 import mrtImg from "@/assets/project-mrt.jpg";
 import doorImg from "@/assets/project-door.jpg";
 
-const hsiaInterior = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Waiting_area_of_Hazrat_Shahjalal_International_Airport_3.jpg/800px-Waiting_area_of_Hazrat_Shahjalal_International_Airport_3.jpg";
-const hsiaExterior = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/HSIA_Terminal_3.jpg/800px-HSIA_Terminal_3.jpg";
-const hsiaInauguration = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Sheikh_Hasina_inaugurates_Hazrat_Shahjalal_International_Airport_Terminal_3%2C_Dhaka%2C_2023-10-07_%28PID-0013277%29.jpg/800px-Sheikh_Hasina_inaugurates_Hazrat_Shahjalal_International_Airport_Terminal_3%2C_Dhaka%2C_2023-10-07_%28PID-0013277%29.jpg";
-
 type Project = {
   title: string;
-  image: string;
+  image?: string;
   role: string;
   description: string;
   tags: string[];
@@ -19,8 +15,6 @@ type Project = {
 const projects: Project[] = [
   {
     title: "HSIA Terminal 03",
-    image: hsiaInterior,
-    gallery: [hsiaExterior, hsiaInauguration, hsiaInterior],
     role: "Quality Control Engineer",
     description:
       "Managed end-to-end QA/QC processes for one of Bangladesh's most significant aviation infrastructure projects, ensuring compliance with international standards.",
@@ -62,22 +56,23 @@ const ProjectsSectionLite = () => (
             transition={{ duration: 0.4, delay: i * 0.1 }}
             className="glass-card-hover rounded-xl overflow-hidden group"
           >
-            <div className="h-48 overflow-hidden bg-card/40">
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
+            {p.image && (
+              <div className="h-48 overflow-hidden bg-card/40">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
             <div className="p-5">
               <h3 className="font-display text-lg font-semibold text-foreground">{p.title}</h3>
               <p className="text-primary text-xs font-body mt-1">{p.role}</p>
               <p className="text-sm text-muted-foreground font-body mt-2 leading-relaxed">
                 {p.description}
               </p>
-              {p.gallery && (
+              {p.gallery && p.gallery.length > 0 && (
                 <div className="grid grid-cols-3 gap-2 mt-4">
                   {p.gallery.map((img, idx) => (
                     <div key={idx} className="h-16 rounded-lg overflow-hidden border border-white/10 bg-card/40">
@@ -85,7 +80,6 @@ const ProjectsSectionLite = () => (
                         src={img}
                         alt={`${p.title} ${idx + 1}`}
                         loading="lazy"
-                        referrerPolicy="no-referrer"
                         className="w-full h-full object-cover"
                       />
                     </div>
