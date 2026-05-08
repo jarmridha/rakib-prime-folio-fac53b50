@@ -15,6 +15,12 @@ type Project = {
 const projects: Project[] = [
   {
     title: "HSIA Terminal 03",
+    image: "/public/hsia/hsia-main.jpg.jpg",
+    gallery: [
+      "/public/hsia/hsia-thumb-1.jpg",
+      "/public/hsia/hsia-thumb-2.jpg",
+      "/public/hsia/hsia-thumb-3.jpg",
+    ],
     role: "Quality Control Engineer",
     description:
       "Managed end-to-end QA/QC processes for one of Bangladesh's most significant aviation infrastructure projects, ensuring compliance with international standards.",
