@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import doorImg from "@/assets/project-door.jpg";
 
 type Project = {
   title: string;
@@ -38,14 +37,6 @@ const projects: Project[] = [
       "Executed quality inspections and layout demarcation for the country's first mass rapid transit system, coordinating with Japanese and local engineering teams.",
     tags: ["Quality Control", "Structural", "Transit", "Surveying"],
   },
-  {
-    title: "Dormakaba ES 250 Pro Easy",
-    image: doorImg,
-    role: "Project Engineer – Installation",
-    description:
-      "Overseeing installation of automatic sliding door systems, managing vendor coordination, site execution, and commissioning for commercial projects.",
-    tags: ["Installation", "Automation", "Project Execution"],
-  },
 ];
 
 const ProjectsSectionLite = () => (
@@ -56,7 +47,7 @@ const ProjectsSectionLite = () => (
         subtitle="Key infrastructure and engineering projects"
       />
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
         {projects.map((p, i) => (
           <motion.div
             key={p.title}
