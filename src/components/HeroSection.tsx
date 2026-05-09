@@ -55,7 +55,7 @@ const HeroSection = () => {
             <a href="#projects" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground font-body text-sm font-medium hover:opacity-90 transition">
               <ArrowDown size={16} /> View Projects
             </a>
-            <a href="/cv.pdf" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg glass-card-hover font-body text-sm font-medium text-foreground">
+            <a href="/Jahangir%20Alam_Cv.pdf" download="Jahangir Alam_Cv.pdf" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg glass-card-hover font-body text-sm font-medium text-foreground">
               <Download size={16} /> Download CV
             </a>
             <a href="#contact" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg glass-card-hover font-body text-sm font-medium text-foreground">
