@@ -2,11 +2,21 @@ import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { Briefcase } from "lucide-react";
 
-const experiences = [
+type Experience = {
+  company: string;
+  role: string;
+  period: string;
+  bullets: string[];
+  project?: string;
+  logo?: string;
+};
+
+const experiences: Experience[] = [
   {
     company: "Ingress Solutions Ltd.",
     role: "Project Engineer (New Installation)",
     period: "Nov 2025 – Present",
+    logo: "/experience/ingress-logo.png",
     bullets: [
       "Leading on-site project execution for new installation projects",
       "Coordinating with vendors, consultants, and clients for seamless delivery",
@@ -52,7 +62,6 @@ const ExperienceSection = () => (
       <SectionHeading title="Experience" subtitle="Career timeline & professional journey" />
 
       <div className="relative">
-        {/* Vertical line */}
         <div className="absolute left-4 md:left-6 top-0 bottom-0 w-px bg-border" />
 
         <div className="space-y-10">
@@ -65,12 +74,11 @@ const ExperienceSection = () => (
               transition={{ duration: 0.4, delay: i * 0.1 }}
               className="relative pl-12 md:pl-16"
             >
-              {/* Dot */}
               <div className="absolute left-2.5 md:left-4.5 top-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background" />
 
               <div className="glass-card-hover rounded-xl p-5 md:p-6">
-                <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-                  <div>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex-1">
                     <h3 className="font-display text-lg font-semibold text-foreground">{exp.role}</h3>
                     <p className="text-primary font-body text-sm flex items-center gap-1.5">
                       <Briefcase size={13} /> {exp.company}
@@ -79,10 +87,25 @@ const ExperienceSection = () => (
                       <p className="text-xs text-muted-foreground font-body mt-0.5">{exp.project}</p>
                     )}
                   </div>
-                  <span className="text-xs text-muted-foreground font-body bg-muted px-2 py-1 rounded">
-                    {exp.period}
-                  </span>
+
+                  <div className="flex items-start justify-between gap-3 sm:flex-col sm:items-end sm:shrink-0">
+                    <span className="text-xs text-muted-foreground font-body bg-muted px-2 py-1 rounded whitespace-nowrap">
+                      {exp.period}
+                    </span>
+
+                    {exp.logo && (
+                      <div className="w-28 h-20 md:w-32 md:h-24 rounded-lg bg-white p-2 flex items-center justify-center shadow-md border border-primary/20">
+                        <img
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          className="max-w-full max-h-full object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                  </div>
                 </div>
+
                 <ul className="mt-3 space-y-1.5">
                   {exp.bullets.map((b) => (
                     <li key={b} className="text-sm text-muted-foreground font-body flex items-start gap-2">
