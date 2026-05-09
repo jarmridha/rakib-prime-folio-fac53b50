@@ -1,13 +1,15 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { Briefcase } from "lucide-react";
+import smccLogo from "@/assets/experience/smcc-itd-logo.png";
+import momotajLogo from "@/assets/experience/momotaj-logo.png";
 
 const experiences = [
   {
     company: "Ingress Solutions Ltd.",
     role: "Project Engineer (New Installation)",
     period: "Nov 2025 – Present",
-    showLogo: true,
+    logoType: "ingress",
     bullets: [
       "Leading on-site project execution for new installation projects",
       "Coordinating with vendors, consultants, and clients for seamless delivery",
@@ -19,7 +21,7 @@ const experiences = [
     role: "Quality Control Engineer",
     project: "HSIA Terminal 3 Project",
     period: "Previous",
-    logoUrl: "/experience/adc-logo.jpg",
+    logoType: "adc",
     bullets: [
       "Managed QA/QC documentation including WIR, MIR, MAR, and RI submissions",
       "Conducted site inspections ensuring compliance with project specifications",
@@ -31,6 +33,7 @@ const experiences = [
     role: "QC Engineer",
     project: "Dhaka Mass Rapid Transit Project",
     period: "Previous",
+    logoUrl: smccLogo,
     bullets: [
       "Executed quality control inspections across structural and finishing works",
       "Prepared layout demarcation and survey coordination for alignment accuracy",
@@ -41,6 +44,7 @@ const experiences = [
     company: "Momotaj Engineers Ltd.",
     role: "Site Engineer / Engineering Support",
     period: "Earlier Career",
+    logoUrl: momotajLogo,
     bullets: [
       "Assisted in construction supervision and site management",
       "Supported material testing, quality monitoring, and reporting",
@@ -64,8 +68,27 @@ const IngressLogo = () => (
   </div>
 );
 
+const ADCLogo = () => (
+  <div className="w-44 h-24 md:w-52 md:h-28 rounded-lg bg-white p-3 flex items-center justify-center shadow-md border border-primary/20 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col justify-center">
+      <div className="flex items-start gap-2">
+        <div className="font-sans font-black text-black leading-none text-[54px] md:text-[62px] tracking-[-0.08em]">
+          ADC
+        </div>
+        <div className="font-sans font-extrabold text-gray-500 leading-[1.05] text-[11px] md:text-[13px] pt-1 uppercase">
+          <div>Aviation</div>
+          <div>Dhaka</div>
+          <div>Consortium</div>
+        </div>
+      </div>
+      <div className="absolute left-0 right-0 bottom-2 h-[3px] bg-blue-700" />
+      <div className="absolute right-0 bottom-0 text-blue-700 text-[35px] md:text-[41px] leading-none font-black">✈</div>
+    </div>
+  </div>
+);
+
 const ExperienceLogo = ({ src, alt }: { src: string; alt: string }) => (
-  <div className="w-40 h-24 md:w-48 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-md border border-primary/20">
+  <div className="w-32 h-24 md:w-36 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-md border border-primary/20">
     <img src={src} alt={alt} className="max-w-full max-h-full object-contain" loading="lazy" />
   </div>
 );
@@ -102,7 +125,8 @@ const ExperienceSection = () => (
                     <span className="text-xs text-muted-foreground font-body bg-muted px-2 py-1 rounded whitespace-nowrap">
                       {exp.period}
                     </span>
-                    {exp.showLogo && <IngressLogo />}
+                    {exp.logoType === "ingress" && <IngressLogo />}
+                    {exp.logoType === "adc" && <ADCLogo />}
                     {exp.logoUrl && <ExperienceLogo src={exp.logoUrl} alt={`${exp.company} logo`} />}
                   </div>
                 </div>
