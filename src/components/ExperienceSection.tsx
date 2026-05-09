@@ -19,6 +19,7 @@ const experiences = [
     role: "Quality Control Engineer",
     project: "HSIA Terminal 3 Project",
     period: "Previous",
+    logoUrl: "/experience/adc-logo.jpg",
     bullets: [
       "Managed QA/QC documentation including WIR, MIR, MAR, and RI submissions",
       "Conducted site inspections ensuring compliance with project specifications",
@@ -63,6 +64,12 @@ const IngressLogo = () => (
   </div>
 );
 
+const ExperienceLogo = ({ src, alt }: { src: string; alt: string }) => (
+  <div className="w-40 h-24 md:w-48 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-md border border-primary/20">
+    <img src={src} alt={alt} className="max-w-full max-h-full object-contain" loading="lazy" />
+  </div>
+);
+
 const ExperienceSection = () => (
   <section id="experience" className="section-padding bg-surface/50">
     <div className="max-w-5xl mx-auto">
@@ -96,6 +103,7 @@ const ExperienceSection = () => (
                       {exp.period}
                     </span>
                     {exp.showLogo && <IngressLogo />}
+                    {exp.logoUrl && <ExperienceLogo src={exp.logoUrl} alt={`${exp.company} logo`} />}
                   </div>
                 </div>
                 <ul className="mt-3 space-y-1.5">
