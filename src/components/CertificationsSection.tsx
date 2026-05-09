@@ -22,7 +22,7 @@ const certs = [
   { title: "ISO 14001:2015 Awareness", image: certIso14001, pdf: "/certificates/iso-14001-2015.pdf" },
   { title: "Standard First Aid, CPR & AED", image: certPlaceholder },
   { title: "Basic Safety Training", image: certPlaceholder },
-  { title: "Health & Safety Induction Certificate", image: certPlaceholder },
+  { title: "Health & Safety Induction Certificate", image: certPlaceholder, pdf: "/certificates/Health%20%26%20Safety%20Induction%20Certificate.pdf" },
   { title: "Managing Project Risks and Changes", image: certManagingRisks, pdf: "/certificates/managing-project-risks-and-changes.pdf" },
   { title: "Initiating and Planning Projects", image: certInitiatingPlanning, pdf: "/certificates/initiating-and-planning-projects.pdf" },
   { title: "High-Impact Business Writing", image: certHighImpactWriting, pdf: "/certificates/high-impact-business-writing.pdf" },
@@ -41,18 +41,13 @@ const CertificationsSection = () => {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {certs.map((c, i) => {
-            // Determine column to align preview and avoid viewport clipping
             const colMod3 = i % 3;
             const colMod2 = i % 2;
-            // On lg (3 cols): rightmost = right-aligned, leftmost = left-aligned, middle = centered
-            // On sm (2 cols): right col = right-aligned, left col = left-aligned
             const previewAlign =
-              "left-1/2 -translate-x-1/2 " + // default sm:base centered fallback (overridden below)
-              // sm breakpoint: 2 columns
+              "left-1/2 -translate-x-1/2 " +
               (colMod2 === 0
                 ? "sm:left-0 sm:translate-x-0 "
                 : "sm:left-auto sm:right-0 sm:translate-x-0 ") +
-              // lg breakpoint: 3 columns
               (colMod3 === 0
                 ? "lg:left-0 lg:right-auto lg:translate-x-0"
                 : colMod3 === 2
@@ -75,7 +70,6 @@ const CertificationsSection = () => {
               <Award size={18} className="text-primary shrink-0 mt-0.5" />
               <span className="text-sm font-body text-foreground">{c.title}</span>
 
-              {/* Desktop floating preview */}
               <AnimatePresence>
                 {!isMobile && hoveredIdx === i && (
                   <motion.div
@@ -105,7 +99,6 @@ const CertificationsSection = () => {
         </div>
       </div>
 
-      {/* Mobile lightbox modal */}
       <AnimatePresence>
         {modalCert && (
           <motion.div
