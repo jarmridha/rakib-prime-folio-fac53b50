@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { Briefcase } from "lucide-react";
-import smccLogo from "@/assets/experience/smcc-itd-logo.png";
-import momotajLogo from "@/assets/experience/momotaj-logo.png";
 
 const experiences = [
   {
@@ -33,7 +31,7 @@ const experiences = [
     role: "QC Engineer",
     project: "Dhaka Mass Rapid Transit Project",
     period: "Previous",
-    logoUrl: smccLogo,
+    logoType: "smcc",
     bullets: [
       "Executed quality control inspections across structural and finishing works",
       "Prepared layout demarcation and survey coordination for alignment accuracy",
@@ -44,7 +42,7 @@ const experiences = [
     company: "Momotaj Engineers Ltd.",
     role: "Site Engineer / Engineering Support",
     period: "Earlier Career",
-    logoUrl: momotajLogo,
+    logoType: "momotaj",
     bullets: [
       "Assisted in construction supervision and site management",
       "Supported material testing, quality monitoring, and reporting",
@@ -87,9 +85,32 @@ const ADCLogo = () => (
   </div>
 );
 
-const ExperienceLogo = ({ src, alt }: { src: string; alt: string }) => (
-  <div className="w-32 h-24 md:w-36 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-md border border-primary/20">
-    <img src={src} alt={alt} className="max-w-full max-h-full object-contain" loading="lazy" />
+const SMCCLogo = () => (
+  <div className="w-32 h-24 md:w-36 md:h-28 rounded-lg bg-white p-3 flex items-center justify-center shadow-md border border-primary/20">
+    <div className="flex flex-col items-center justify-center w-full">
+      <div className="flex items-center gap-2">
+        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-black text-xl">
+          S
+        </div>
+        <div className="w-14 h-14 rounded-full border-4 border-orange-500 flex items-center justify-center text-orange-600 font-black text-xl">
+          ITD
+        </div>
+      </div>
+      <div className="mt-1 text-black font-black text-sm">SMCC-ITD JV</div>
+    </div>
+  </div>
+);
+
+const MomotajLogo = () => (
+  <div className="w-32 h-24 md:w-36 md:h-28 rounded-lg bg-white p-3 flex items-center justify-center shadow-md border border-primary/20">
+    <div className="flex flex-col items-center justify-center w-full">
+      <div className="text-[52px] leading-none font-black tracking-[-0.1em] text-red-700 italic">
+        ML
+      </div>
+      <div className="text-[10px] text-gray-700 font-semibold text-center leading-tight mt-1">
+        Manufacturers, Engineers & Builders
+      </div>
+    </div>
   </div>
 );
 
@@ -127,7 +148,8 @@ const ExperienceSection = () => (
                     </span>
                     {exp.logoType === "ingress" && <IngressLogo />}
                     {exp.logoType === "adc" && <ADCLogo />}
-                    {exp.logoUrl && <ExperienceLogo src={exp.logoUrl} alt={`${exp.company} logo`} />}
+                    {exp.logoType === "smcc" && <SMCCLogo />}
+                    {exp.logoType === "momotaj" && <MomotajLogo />}
                   </div>
                 </div>
                 <ul className="mt-3 space-y-1.5">
