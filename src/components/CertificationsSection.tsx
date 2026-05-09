@@ -13,6 +13,8 @@ import certHseEngineering from "@/assets/cert-hse-engineering.jpg";
 import certIso45001 from "@/assets/cert-iso-45001.jpg";
 import certIso14001 from "@/assets/cert-iso-14001.jpg";
 
+const healthSafetyPdf = "/certificates/Health%20%26%20Safety%20Induction%20Certificate.pdf";
+
 const certs = [
   { title: "PMP Certification: Unit 3", image: certPmpUnit3, pdf: "/certificates/pmp-unit-3.pdf" },
   { title: "OSHA Safety Standards and Compliance", image: certPlaceholder },
@@ -22,11 +24,32 @@ const certs = [
   { title: "ISO 14001:2015 Awareness", image: certIso14001, pdf: "/certificates/iso-14001-2015.pdf" },
   { title: "Standard First Aid, CPR & AED", image: certPlaceholder },
   { title: "Basic Safety Training", image: certPlaceholder },
-  { title: "Health & Safety Induction Certificate", image: certPlaceholder, pdf: "/certificates/Health%20%26%20Safety%20Induction%20Certificate.pdf" },
+  { title: "Health & Safety Induction Certificate", image: certPlaceholder, pdf: healthSafetyPdf, previewPdf: healthSafetyPdf },
   { title: "Managing Project Risks and Changes", image: certManagingRisks, pdf: "/certificates/managing-project-risks-and-changes.pdf" },
   { title: "Initiating and Planning Projects", image: certInitiatingPlanning, pdf: "/certificates/initiating-and-planning-projects.pdf" },
   { title: "High-Impact Business Writing", image: certHighImpactWriting, pdf: "/certificates/high-impact-business-writing.pdf" },
 ];
+
+const CertificatePreview = ({ cert, compact = false }: { cert: typeof certs[0]; compact?: boolean }) => {
+  if (cert.previewPdf) {
+    return (
+      <iframe
+        src={`${cert.previewPdf}#toolbar=0&navpanes=0&scrollbar=0`}
+        title={cert.title}
+        className={compact ? "w-full h-[220px] bg-white" : "w-full h-[62vh] bg-white"}
+      />
+    );
+  }
+
+  return (
+    <img
+      src={cert.image}
+      alt={cert.title}
+      className="w-full h-auto object-cover"
+      loading="lazy"
+    />
+  );
+};
 
 const CertificationsSection = () => {
   const isMobile = useIsMobile();
@@ -80,12 +103,7 @@ const CertificationsSection = () => {
                     className={`absolute bottom-full mb-3 z-50 pointer-events-none w-[280px] max-w-[calc(100vw-2rem)] ${previewAlign}`}
                   >
                     <div className="glass-card rounded-xl overflow-hidden shadow-[0_8px_40px_hsl(var(--gold-glow)/0.15)] border border-primary/20">
-                      <img
-                        src={c.image}
-                        alt={c.title}
-                        className="w-full h-auto object-cover"
-                        loading="lazy"
-                      />
+                      <CertificatePreview cert={c} compact />
                       <div className="px-3 py-2 text-xs text-muted-foreground text-center font-body truncate">
                         {c.title}
                       </div>
@@ -106,7 +124,7 @@ const CertificationsSection = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-3 bg-background/80 backdrop-blur-md"
             onClick={() => setModalCert(null)}
           >
             <motion.div
@@ -114,15 +132,11 @@ const CertificationsSection = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="glass-card rounded-2xl overflow-hidden shadow-[0_16px_60px_hsl(var(--gold-glow)/0.2)] border border-primary/20 max-w-md w-full"
+              className="glass-card rounded-2xl overflow-hidden shadow-[0_16px_60px_hsl(var(--gold-glow)/0.2)] border border-primary/20 max-w-3xl w-full max-h-[90vh]"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative">
-                <img
-                  src={modalCert.image}
-                  alt={modalCert.title}
-                  className="w-full h-auto object-cover"
-                />
+              <div className="relative bg-white">
+                <CertificatePreview cert={modalCert} />
                 <button
                   onClick={() => setModalCert(null)}
                   className="absolute top-3 right-3 w-8 h-8 rounded-full bg-background/70 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:text-primary transition-colors"
